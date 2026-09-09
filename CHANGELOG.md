@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
    - Header file `include/secp256k1_silentpayments.h` which defines the new API.
    - Usage example `examples/silentpayments.c`.
  - The `silentpayments` API currently requires full access to the transaction data (light client scanning is not implemented).
+ - New function `secp256k1_borromean_verify` in the `rangeproof` module, exposing as public API the Borromean ring signature verification primitive this module's own range proofs are already built on.
 
 #### Changed
  - The field multiplication and squaring routines of the 5x52 (64-bit) implementation are now force-inlined. This speeds up many library functions with GCC and MSVC (Clang is largely unaffected), e.g. `secp256k1_ecdsa_verify` and `secp256k1_schnorrsig_verify` by up to ~11%, at the cost of a somewhat larger compiled library. Force-inlining is disabled in unoptimized builds and when optimizing for size.
